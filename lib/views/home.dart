@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
             : ctrl.hasJoke
                 ? Padding(
                     padding: const EdgeInsets.all(16.0),
-                    child: Expanded(child: Text(ctrl.joke.value!.content)),
+                    child: Text(ctrl.joke.value!.content),
                   )
                 : Text("no jokes")),
       ),
