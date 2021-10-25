@@ -4,6 +4,7 @@ class ChuckNorrisProvider extends GetConnect {
   @override
   void onInit() {
     httpClient.baseUrl = 'https://api.chucknorris.io/jokes/';
+    httpClient.maxAuthRetries = 3;
   }
 
   Future<Response> random() async => await get("random");
