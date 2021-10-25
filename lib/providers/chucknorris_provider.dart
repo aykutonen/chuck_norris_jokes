@@ -9,6 +9,9 @@ class ChuckNorrisProvider extends GetConnect {
 
   Future<Response> random() async => await get("random");
 
+  Future<Response> randomByCateogry(String cat) async =>
+      await get("random?category=$cat");
+
   Future<Response> categories() async => await get("categories");
 
   Future<Response> search(String query) async =>

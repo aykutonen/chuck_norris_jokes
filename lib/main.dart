@@ -1,9 +1,15 @@
+import 'package:chuck_norris_jokes/controllers/category_controller.dart';
+import 'package:chuck_norris_jokes/providers/chucknorris_provider.dart';
+import 'package:chuck_norris_jokes/services/chucknorris_service.dart';
 import 'package:chuck_norris_jokes/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+  Get.put(ChuckNorrisProvider());
+  Get.put(ChuckNorrisService());
+  Get.put(CategoryController());
   runApp(const MyApp());
 }
 
