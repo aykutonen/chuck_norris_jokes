@@ -8,7 +8,7 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.find<CategoryController>();
+    final ctrl = Get.put(CategoryController());
     final homeCtrl = Get.find<HomeController>();
 
     return Scaffold(
