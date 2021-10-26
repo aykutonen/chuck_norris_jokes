@@ -18,7 +18,6 @@ class HomeView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
           children: [
             Obx(
               () => ctrl.selectedCategory.isNotEmpty
@@ -36,33 +35,34 @@ class HomeView extends StatelessWidget {
                   : Container(),
             ),
             Expanded(
-              child: Column(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Obx(() => ctrl.isLoading.value
-                      ? Center(child: CircularProgressIndicator())
-                      : ctrl.hasJoke
-                          ? Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Center(
-                                child: Text(
-                                  ctrl.joke.value!.content,
-                                ),
-                              ),
-                            )
-                          : Text("no jokes")),
-                  ElevatedButton(
-                    onPressed: () => ctrl.random(),
-                    child: Text("Shuffle"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () => Get.to(() => CategoriesView()),
-                    child: Text("Categories"),
-                  ),
-                ],
-              ),
+              child: Obx(() => ctrl.isLoading.value
+                  ? Center(child: CircularProgressIndicator())
+                  : ctrl.hasJoke
+                      ? Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Center(
+                            child: Text(
+                              ctrl.joke.value!.content,
+                            ),
+                          ),
+                        )
+                      : Text("no jokes")),
             ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                ElevatedButton(
+                  onPressed: () => ctrl.random(),
+                  child: Text("Shuffle"),
+                ),
+                ElevatedButton(
+                  onPressed: () => Get.to(() => CategoriesView(),
+                      transition: Transition.cupertino),
+                  child: Text("Categories"),
+                ),
+              ],
+            ),
+            SizedBox(height: 32),
           ],
         ),
       ),
