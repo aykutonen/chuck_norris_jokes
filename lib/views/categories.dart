@@ -19,6 +19,10 @@ class CategoriesView extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             itemBuilder: (context, index) {
               return ListTile(
+                  trailing: ctrl.selected.value.length > 0 &&
+                          ctrl.selected.value == ctrl.categories.value[index]
+                      ? Icon(Icons.check)
+                      : null,
                   title: Text(ctrl.categories.value[index]),
                   onTap: () {
                     homeCtrl.selectCategory(ctrl.categories.value[index]);

@@ -36,4 +36,10 @@ class ChuckNorrisService {
     }
     return categories;
   }
+
+  void selectCategory(String cat) {
+    box.write('selectedCategory', cat);
+  }
+
+  String getSelectedCategory() => box.read('selectedCategory') ?? '';
 }

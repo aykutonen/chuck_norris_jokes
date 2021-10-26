@@ -14,6 +14,7 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
+    selectedCategory(service.getSelectedCategory());
     random();
     super.onInit();
   }
@@ -28,6 +29,7 @@ class HomeController extends GetxController {
   }
 
   void selectCategory(String cat) {
+    service.selectCategory(cat);
     selectedCategory(cat);
     random();
   }
