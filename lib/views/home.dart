@@ -44,8 +44,7 @@ class HomeView extends StatelessWidget {
                             return ListTile(
                               dense: true,
                               visualDensity: VisualDensity.compact,
-                              title: Text(
-                                  '${ctrl.likes.value[index].content.substring(0, 35)}...'),
+                              title: Text('${ctrl.likes.value[index].summary}'),
                             );
                           }),
                     )
