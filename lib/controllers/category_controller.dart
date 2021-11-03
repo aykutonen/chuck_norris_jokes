@@ -19,7 +19,6 @@ class CategoryController extends GetxController {
   }
 
   void getCategories() async {
-    print("getting categories...");
     isLoading(true);
     categories(await service.categories());
     isLoading(false);
