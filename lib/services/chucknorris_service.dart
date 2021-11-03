@@ -25,8 +25,9 @@ class ChuckNorrisService {
 
   Future<List<String>> categories() async {
     List<String> categories = [];
-    if (box.read('categories') != null) {
-      categories = List.from(json.decode(box.read('categories')));
+    var fromBox = box.read('categories');
+    if (fromBox != null) {
+      categories = List.from(json.decode(fromBox));
     } else {
       var response = await _provider.categories();
       if (response.isOk) {
@@ -42,4 +43,26 @@ class ChuckNorrisService {
   }
 
   String getSelectedCategory() => box.read('selectedCategory') ?? '';
+
+  List<Joke> getLikes() {
+    List<Joke> likes = [];
+    // box.remove('likes');
+    var fromBox = box.read('likes');
+    if (fromBox != null) {
+      likes = List.from(json.decode(fromBox));
+    }
+    return likes;
+  }
+
+  void addLike(Joke joke) {
+    var likes = getLikes();
+    likes.add(joke);
+    box.write('likes', json.encode(likes));
+  }
+
+  void removeLike(String id) {
+    var likes = getLikes();
+    likes.removeWhere((element) => element.id == id);
+    box.write('likes', json.encode(likes));
+  }
 }

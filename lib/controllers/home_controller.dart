@@ -7,7 +7,11 @@ class HomeController extends GetxController {
   var joke = Rxn<Joke>();
   var isLoading = false.obs;
   var selectedCategory = "".obs;
+  var likes = RxList<Joke>().obs;
+
   bool get hasJoke => joke.value != null;
+  bool get jokeIsLiked =>
+      likes.value.any((element) => element.id == joke.value?.id);
 
   final service = Get.put(ChuckNorrisService());
   final box = GetStorage();
@@ -15,6 +19,8 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     selectedCategory(service.getSelectedCategory());
+    likes.value(service.getLikes());
+    print(likes);
     random();
     super.onInit();
   }
@@ -32,5 +38,17 @@ class HomeController extends GetxController {
     service.selectCategory(cat);
     selectedCategory(cat);
     random();
+  }
+
+  void addLike(Joke joke) {
+    if (!likes.value.any((element) => element.id == joke.id)) {
+      service.addLike(joke);
+      likes.value.add(joke);
+    }
+  }
+
+  void removeLike(String id) {
+    service.removeLike(id);
+    likes.value.removeWhere((element) => element.id == id);
   }
 }

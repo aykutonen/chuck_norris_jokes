@@ -34,32 +34,63 @@ class HomeView extends StatelessWidget {
                     )
                   : Container(),
             ),
+            Obx(
+              () => ctrl.likes.value.length > 0
+                  ? SizedBox(
+                      height: 100,
+                      child: ListView.builder(
+                          itemCount: ctrl.likes.value.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              dense: true,
+                              visualDensity: VisualDensity.compact,
+                              title: Text(
+                                  '${ctrl.likes.value[index].content.substring(0, 35)}...'),
+                            );
+                          }),
+                    )
+                  : SizedBox(),
+            ),
             Expanded(
-              child: Obx(() => ctrl.isLoading.value
-                  ? Center(child: CircularProgressIndicator())
-                  : ctrl.hasJoke
-                      ? Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Center(
-                            child: Text(
-                              ctrl.joke.value!.content,
-                            ),
-                          ),
-                        )
-                      : Text("no jokes")),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Obx(() => ctrl.isLoading.value
+                    ? Center(child: CircularProgressIndicator())
+                    : ctrl.hasJoke
+                        ? Center(
+                            child: Text(ctrl.joke.value!.content),
+                          )
+                        : Text("no jokes")),
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => ctrl.random(),
-                  child: Text("Shuffle"),
-                ),
-                ElevatedButton(
                   onPressed: () => Get.to(() => CategoriesView(),
                       transition: Transition.cupertino),
                   child: Text("Categories"),
                 ),
+                ElevatedButton(
+                  onPressed: () => ctrl.random(),
+                  child: Text("Shuffle"),
+                ),
+                Obx(() => ElevatedButton(
+                      onPressed: () => ctrl.jokeIsLiked
+                          ? ctrl.removeLike(ctrl.joke.value!.id)
+                          : ctrl.addLike(ctrl.joke.value!),
+                      child: Row(
+                        children: [
+                          Icon(
+                            Icons.favorite,
+                            size: 16,
+                            color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
+                          ),
+                          SizedBox(width: 8),
+                          Text("Like"),
+                        ],
+                      ),
+                    )),
               ],
             ),
             SizedBox(height: 32),
