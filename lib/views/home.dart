@@ -35,11 +35,11 @@ class HomeView extends StatelessWidget {
                   : Container(),
             ),
             Obx(
-              () => ctrl.likes.value.length > 0
+              () => ctrl.likeCount > 0
                   ? SizedBox(
                       height: 100,
                       child: ListView.builder(
-                          itemCount: ctrl.likes.value.length,
+                          itemCount: ctrl.likeCount,
                           itemBuilder: (context, index) {
                             return ListTile(
                               dense: true,
@@ -87,7 +87,8 @@ class HomeView extends StatelessWidget {
                             color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
                           ),
                           SizedBox(width: 8),
-                          Text("Like"),
+                          Text(
+                              "Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
                         ],
                       ),
                     )),

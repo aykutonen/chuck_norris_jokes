@@ -12,6 +12,7 @@ class HomeController extends GetxController {
   bool get hasJoke => joke.value != null;
   bool get jokeIsLiked =>
       likes.value.any((element) => element.id == joke.value?.id);
+  int get likeCount => likes.value.length;
 
   final service = Get.put(ChuckNorrisService());
   final box = GetStorage();
@@ -20,7 +21,6 @@ class HomeController extends GetxController {
   void onInit() {
     selectedCategory(service.getSelectedCategory());
     likes.value(service.getLikes());
-    print(likes);
     random();
     super.onInit();
   }
