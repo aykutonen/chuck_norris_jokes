@@ -49,7 +49,10 @@ class ChuckNorrisService {
     // box.remove('likes');
     var fromBox = box.read('likes');
     if (fromBox != null) {
-      likes = List.from(json.decode(fromBox));
+      List<dynamic> _decoded = json.decode(fromBox);
+      _decoded.forEach((element) {
+        likes.add(Joke.fromJson(element));
+      });
     }
     return likes;
   }
