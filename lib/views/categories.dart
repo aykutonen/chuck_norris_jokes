@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoriesView extends StatelessWidget {
-  const CategoriesView({Key? key}) : super(key: key);
+  final ctrl = Get.put(CategoryController());
+  final homeCtrl = Get.find<HomeController>();
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.put(CategoryController());
-    final homeCtrl = Get.find<HomeController>();
-
     return Scaffold(
       appBar: AppBar(),
       body: SafeArea(

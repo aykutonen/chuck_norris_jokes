@@ -1,15 +1,13 @@
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
-import 'package:chuck_norris_jokes/views/categories.dart';
+import 'package:chuck_norris_jokes/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
-  const HomeView({Key? key}) : super(key: key);
+  final ctrl = Get.put(HomeController());
 
   @override
   Widget build(BuildContext context) {
-    final ctrl = Get.put(HomeController());
-
     return Scaffold(
       appBar: AppBar(
         title: Text("Chuck Norris Jokes"),
@@ -66,8 +64,7 @@ class HomeView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () => Get.to(() => CategoriesView(),
-                      transition: Transition.cupertino),
+                  onPressed: () => Get.toNamed(AppRouter.categories),
                   child: Text("Categories"),
                 ),
                 ElevatedButton(
