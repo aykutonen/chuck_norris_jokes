@@ -12,6 +12,7 @@ void main() async {
 
 Future<void> appInit() async {
   await GetStorage.init();
+  // GetStorage().erase();
   Get.lazyPut(() => AppController());
 }
 
@@ -23,9 +24,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      initialRoute: Get.find<AppController>().hasShowOnboarding.value
-          ? AppRouter.home
-          : AppRouter.onboarding,
+      initialRoute: Get.find<AppController>().getInitialRoute(),
       getPages: AppRouter.routes,
     );
   }
