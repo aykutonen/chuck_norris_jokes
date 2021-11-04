@@ -1,3 +1,4 @@
+import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,11 +11,12 @@ class OnboardingController extends GetxController {
   bool get isLast => currentPage.value == pages.length - 1;
 
   void nextPage() {
-    if (isLast)
+    if (isLast) {
       // pageController.animateToPage(0,
       //     duration: 300.milliseconds, curve: Curves.ease);
+      Get.find<AppController>().saveHasShowOnboarding(true);
       Get.offAllNamed(AppRouter.home);
-    else
+    } else
       pageController.nextPage(duration: 300.milliseconds, curve: Curves.ease);
   }
 }

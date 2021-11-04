@@ -9,7 +9,7 @@ class AppRouter {
       onboarding = '/onboarding';
 
   static List<GetPage<dynamic>>? routes = [
-    GetPage(name: home, page: () => HomeView()),
+    GetPage(name: home, page: () => HomeView(), transition: Transition.zoom),
     GetPage(name: categories, page: () => CategoriesView()),
     GetPage(name: onboarding, page: () => OnboardingView()),
   ];

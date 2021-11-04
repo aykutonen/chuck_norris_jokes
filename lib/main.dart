@@ -1,3 +1,4 @@
+import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -11,6 +12,7 @@ void main() async {
 
 Future<void> appInit() async {
   await GetStorage.init();
+  Get.lazyPut(() => AppController());
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +23,9 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRouter.onboarding,
+      initialRoute: Get.find<AppController>().hasShowOnboarding.value
+          ? AppRouter.home
+          : AppRouter.onboarding,
       getPages: AppRouter.routes,
     );
   }
