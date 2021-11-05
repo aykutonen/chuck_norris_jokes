@@ -27,7 +27,8 @@ class AppController extends GetxController {
   }
 
   String getInitialRoute() {
-    if (hasShowOnboarding.isTrue && hasLoggedIn.isTrue) return AppRouter.home;
+    if (hasShowOnboarding.isTrue && hasLoggedIn.isTrue)
+      return AppRouter.dashboard;
     if (hasShowOnboarding.isFalse) return AppRouter.onboarding;
     if (hasLoggedIn.isFalse) return AppRouter.login;
     return AppRouter.onboarding;

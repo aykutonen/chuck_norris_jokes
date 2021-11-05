@@ -9,32 +9,25 @@ class CategoriesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Categories'),
-      ),
-      body: SafeArea(
-        child: Obx(
-          () => ListView.separated(
-            itemCount: ctrl.count,
-            itemBuilder: (context, index) {
-              final cat = ctrl.categories.value[index];
-              final selectedCat = ctrl.selected.value;
-              return ListTile(
-                trailing: selectedCat.length > 0 && selectedCat == cat
-                    ? Icon(Icons.check)
-                    : null,
-                title: Text(cat),
-                onTap: () {
-                  homeCtrl.selectCategory(cat);
-                  Get.back();
-                },
-              );
+    return Obx(
+      () => ListView.separated(
+        itemCount: ctrl.count,
+        itemBuilder: (context, index) {
+          final cat = ctrl.categories.value[index];
+          final selectedCat = ctrl.selected.value;
+          return ListTile(
+            trailing: selectedCat.length > 0 && selectedCat == cat
+                ? Icon(Icons.check)
+                : null,
+            title: Text(cat),
+            onTap: () {
+              homeCtrl.selectCategory(cat);
+              Get.back();
             },
-            separatorBuilder: (context, index) =>
-                Divider(height: 2, thickness: 0.4),
-          ),
-        ),
+          );
+        },
+        separatorBuilder: (context, index) =>
+            Divider(height: 2, thickness: 0.4),
       ),
     );
   }

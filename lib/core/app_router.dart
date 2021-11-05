@@ -1,4 +1,5 @@
 import 'package:chuck_norris_jokes/views/categories.dart';
+import 'package:chuck_norris_jokes/views/dashboard.dart';
 import 'package:chuck_norris_jokes/views/home.dart';
 import 'package:chuck_norris_jokes/views/like_detail.dart';
 import 'package:chuck_norris_jokes/views/likes.dart';
@@ -7,7 +8,8 @@ import 'package:chuck_norris_jokes/views/onboarding.dart';
 import 'package:get/get.dart';
 
 class AppRouter {
-  static final String home = '/',
+  static final String dashboard = '/',
+      home = '/home',
       categories = '/categories',
       onboarding = '/onboarding',
       login = '/login',
@@ -15,6 +17,10 @@ class AppRouter {
       likeDetail = '/like_detail';
 
   static List<GetPage<dynamic>>? routes = [
+    GetPage(
+        name: dashboard,
+        page: () => DashboardView(),
+        transition: Transition.zoom),
     GetPage(name: home, page: () => HomeView(), transition: Transition.zoom),
     GetPage(name: categories, page: () => CategoriesView()),
     GetPage(name: likes, page: () => LikesView()),

@@ -7,7 +7,7 @@ import 'core/app_router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await appInit();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 Future<void> appInit() async {
@@ -17,7 +17,7 @@ Future<void> appInit() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  // const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

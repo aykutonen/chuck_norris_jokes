@@ -8,103 +8,90 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Chuck Norris Jokes"),
-      ),
-      body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        Obx(
+          () => ctrl.selectedCategory.isNotEmpty
+              ? Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Selected Category: ${ctrl.selectedCategory}"),
+                    IconButton(
+                      onPressed: () => ctrl.selectCategory(""),
+                      icon: const Icon(Icons.delete),
+                    )
+                  ],
+                )
+              : Container(),
+        ),
+        Obx(
+          () => ctrl.likeCount > 0
+              ? SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                      itemCount: ctrl.likeCount,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          dense: true,
+                          visualDensity: VisualDensity.compact,
+                          title: Text('${ctrl.likes.value[index].summary}'),
+                        );
+                      }),
+                )
+              : SizedBox(),
+        ),
+        Expanded(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Obx(() => ctrl.isLoading.value
+                ? Center(child: CircularProgressIndicator())
+                : ctrl.hasJoke
+                    ? Center(
+                        child: Text(ctrl.joke.value!.content),
+                      )
+                    : Text("no jokes")),
+          ),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Obx(
-              () => ctrl.selectedCategory.isNotEmpty
-                  ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Selected Category: ${ctrl.selectedCategory}"),
-                        IconButton(
-                          onPressed: () => ctrl.selectCategory(""),
-                          icon: const Icon(Icons.delete),
-                        )
-                      ],
-                    )
-                  : Container(),
+            ElevatedButton(
+              onPressed: () => Get.toNamed(AppRouter.categories),
+              child: Text("Categories"),
+            ),
+            ElevatedButton(
+              onPressed: () => ctrl.random(),
+              child: Text("Shuffle"),
             ),
             Obx(
-              () => ctrl.likeCount > 0
-                  ? SizedBox(
-                      height: 100,
-                      child: ListView.builder(
-                          itemCount: ctrl.likeCount,
-                          itemBuilder: (context, index) {
-                            return ListTile(
-                              dense: true,
-                              visualDensity: VisualDensity.compact,
-                              title: Text('${ctrl.likes.value[index].summary}'),
-                            );
-                          }),
-                    )
-                  : SizedBox(),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Obx(() => ctrl.isLoading.value
-                    ? Center(child: CircularProgressIndicator())
-                    : ctrl.hasJoke
-                        ? Center(
-                            child: Text(ctrl.joke.value!.content),
-                          )
-                        : Text("no jokes")),
+              () => ElevatedButton(
+                onPressed: () => ctrl.jokeIsLiked
+                    ? ctrl.removeLike(ctrl.joke.value!.id)
+                    : ctrl.addLike(ctrl.joke.value!),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.favorite,
+                      size: 16,
+                      color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
+                    ),
+                    SizedBox(width: 8),
+                    Text("Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
+                  ],
+                ),
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                ElevatedButton(
-                  onPressed: () => Get.toNamed(AppRouter.categories),
-                  child: Text("Categories"),
-                ),
-                ElevatedButton(
-                  onPressed: () => ctrl.random(),
-                  child: Text("Shuffle"),
-                ),
-                Obx(
-                  () => ElevatedButton(
-                    onPressed: () => ctrl.jokeIsLiked
-                        ? ctrl.removeLike(ctrl.joke.value!.id)
-                        : ctrl.addLike(ctrl.joke.value!),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.favorite,
-                          size: 16,
-                          color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
-                        ),
-                        SizedBox(width: 8),
-                        Text(
-                            "Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
-                      ],
-                    ),
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () => Get.toNamed(AppRouter.likes),
-                  child: Text('Likes'),
-                )
-              ],
-            ),
-            SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () => Get.toNamed(AppRouter.likes),
+              child: Text('Likes'),
+            )
           ],
         ),
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () => ctrl.random(),
-      //   tooltip: 'Increment',
-      //   child: const Icon(Icons.add),
-      // ), // This trailing comma makes auto-formatting nicer for build methods.
+        SizedBox(height: 32),
+      ],
     );
   }
 }
