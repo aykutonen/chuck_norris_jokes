@@ -26,7 +26,7 @@ class CategoriesView extends StatelessWidget {
                     : null,
                 title: Text(cat),
                 onTap: () {
-                  homeCtrl.selectedCategory(cat);
+                  homeCtrl.selectCategory(cat);
                   Get.back();
                 },
               );
