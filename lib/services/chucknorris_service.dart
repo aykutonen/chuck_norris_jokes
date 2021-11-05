@@ -5,6 +5,11 @@ import 'package:chuck_norris_jokes/providers/chucknorris_provider.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
+// Keys
+final String _selectedCategoryKey = 'selected_category',
+    _categoriesKey = 'categories',
+    _likesKey = 'likes';
+
 class ChuckNorrisService {
   final _provider = Get.put(ChuckNorrisProvider());
   final box = GetStorage();
@@ -25,29 +30,26 @@ class ChuckNorrisService {
 
   Future<List<String>> categories() async {
     List<String> categories = [];
-    var fromBox = box.read('categories');
+    var fromBox = box.read(_categoriesKey);
     if (fromBox != null) {
       categories = List.from(json.decode(fromBox));
     } else {
       var response = await _provider.categories();
       if (response.isOk) {
         categories = List.from(response.body);
-        box.write('categories', json.encode(categories));
+        box.write(_categoriesKey, json.encode(categories));
       }
     }
     return categories;
   }
 
-  void selectCategory(String cat) {
-    box.write('selectedCategory', cat);
-  }
+  void selectCategory(String cat) => box.write(_selectedCategoryKey, cat);
 
-  String getSelectedCategory() => box.read('selectedCategory') ?? '';
+  String getSelectedCategory() => box.read(_selectedCategoryKey) ?? '';
 
   List<Joke> getLikes() {
     List<Joke> likes = [];
-    // box.remove('likes');
-    var fromBox = box.read('likes');
+    var fromBox = box.read(_likesKey);
     if (fromBox != null) {
       List<dynamic> _decoded = json.decode(fromBox);
       _decoded.forEach((element) {
@@ -60,12 +62,12 @@ class ChuckNorrisService {
   void addLike(Joke joke) {
     var likes = getLikes();
     likes.add(joke);
-    box.write('likes', json.encode(likes));
+    box.write(_likesKey, json.encode(likes));
   }
 
   void removeLike(String id) {
     var likes = getLikes();
     likes.removeWhere((element) => element.id == id);
-    box.write('likes', json.encode(likes));
+    box.write(_likesKey, json.encode(likes));
   }
 }

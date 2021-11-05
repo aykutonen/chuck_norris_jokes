@@ -1,5 +1,6 @@
 import 'package:get_storage/get_storage.dart';
 
+// Keys
 final String _hasShowOnboardingKey = 'has_show_onboarding',
     _hasLoggedInKey = 'has_logged_in';
 
