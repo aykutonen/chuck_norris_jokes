@@ -13,7 +13,7 @@ void main() async {
 Future<void> appInit() async {
   await GetStorage.init();
   // GetStorage().erase();
-  Get.lazyPut(() => AppController());
+  Get.put(AppController());
 }
 
 class MyApp extends StatelessWidget {
