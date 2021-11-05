@@ -71,23 +71,29 @@ class HomeView extends StatelessWidget {
                   onPressed: () => ctrl.random(),
                   child: Text("Shuffle"),
                 ),
-                Obx(() => ElevatedButton(
-                      onPressed: () => ctrl.jokeIsLiked
-                          ? ctrl.removeLike(ctrl.joke.value!.id)
-                          : ctrl.addLike(ctrl.joke.value!),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.favorite,
-                            size: 16,
-                            color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
-                          ),
-                          SizedBox(width: 8),
-                          Text(
-                              "Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
-                        ],
-                      ),
-                    )),
+                Obx(
+                  () => ElevatedButton(
+                    onPressed: () => ctrl.jokeIsLiked
+                        ? ctrl.removeLike(ctrl.joke.value!.id)
+                        : ctrl.addLike(ctrl.joke.value!),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.favorite,
+                          size: 16,
+                          color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
+                        ),
+                        SizedBox(width: 8),
+                        Text(
+                            "Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
+                      ],
+                    ),
+                  ),
+                ),
+                ElevatedButton(
+                  onPressed: () => Get.toNamed(AppRouter.likes),
+                  child: Text('Likes'),
+                )
               ],
             ),
             SizedBox(height: 32),
