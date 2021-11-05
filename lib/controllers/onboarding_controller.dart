@@ -9,6 +9,12 @@ class OnboardingController extends GetxController {
 
   bool get isLast => currentPage.value == pages.length - 1;
 
+  @override
+  void onClose() {
+    pageController.dispose();
+    super.onClose();
+  }
+
   void nextPage() {
     if (isLast) {
       // pageController.animateToPage(0,
