@@ -1,7 +1,6 @@
 import 'package:chuck_norris_jokes/models/joke/joke.dart';
 import 'package:chuck_norris_jokes/services/chucknorris_service.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
 
 class HomeController extends GetxController {
   var joke = Rxn<Joke>();
@@ -15,7 +14,6 @@ class HomeController extends GetxController {
   int get likeCount => likes.value.length;
 
   final service = Get.put(ChuckNorrisService());
-  final box = GetStorage();
 
   @override
   void onInit() {
