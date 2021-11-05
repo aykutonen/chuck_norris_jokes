@@ -27,10 +27,28 @@ class LoginController extends GetxController {
 
   void login() {
     if (formKey.currentState!.validate()) {
-      Get.find<AppController>().saveHasLoggedIn(true);
-      Get.offAllNamed(AppRouter.home);
+      if (_checkUser()) {
+        Get.find<AppController>().saveHasLoggedIn(true);
+        Get.offAllNamed(AppRouter.home);
+      } else {
+        Get.showSnackbar(
+          GetBar(
+            message: 'Hatalı parola girdiniz',
+            backgroundColor: Colors.red,
+            title: 'Hata',
+            duration: 3.seconds,
+            snackStyle: SnackStyle.GROUNDED,
+            icon: Icon(Icons.warning, color: Colors.white),
+          ),
+        );
+      }
     } else {
       passwordCtrl.clear();
     }
+  }
+
+  bool _checkUser() {
+    print('text: ${passwordCtrl.text}');
+    return passwordCtrl.text == '123';
   }
 }
