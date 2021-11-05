@@ -14,6 +14,6 @@ class AppRouter {
     GetPage(name: home, page: () => HomeView(), transition: Transition.zoom),
     GetPage(name: categories, page: () => CategoriesView()),
     GetPage(name: onboarding, page: () => OnboardingView()),
-    GetPage(name: login, page: () => LoginView()),
+    GetPage(name: login, page: () => LoginView(), transition: Transition.zoom),
   ];
 }
