@@ -13,12 +13,12 @@ class Joke {
   @JsonKey(name: "value")
   String content;
 
-  Joke({
-    required this.content,
-    required this.icon,
-    required this.id,
-    required this.url,
-  });
+  Joke(
+    this.content,
+    this.icon,
+    this.id,
+    this.url,
+  );
 
   String get summary =>
       content.length > 35 ? content.substring(0, 35) + '...' : content;
