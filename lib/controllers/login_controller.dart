@@ -31,16 +31,15 @@ class LoginController extends GetxController {
         Get.find<AppController>().saveHasLoggedIn(true);
         Get.offAllNamed(AppRouter.home);
       } else {
-        Get.showSnackbar(
-          GetBar(
-            message: 'Hatalı parola girdiniz',
+        Get.snackbar('Hata', 'Hatalı parola girdiniz',
             backgroundColor: Colors.red,
-            title: 'Hata',
             duration: 3.seconds,
-            snackStyle: SnackStyle.GROUNDED,
-            icon: Icon(Icons.warning, color: Colors.white),
-          ),
-        );
+            snackStyle: SnackStyle.FLOATING,
+            snackPosition: SnackPosition.BOTTOM,
+            icon: Icon(
+              Icons.warning,
+              color: Colors.white,
+            ));
       }
     } else {
       passwordCtrl.clear();
