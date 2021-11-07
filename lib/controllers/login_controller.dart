@@ -47,7 +47,6 @@ class LoginController extends GetxController {
   }
 
   bool _checkUser() {
-    print('text: ${passwordCtrl.text}');
     return passwordCtrl.text == '123';
   }
 }

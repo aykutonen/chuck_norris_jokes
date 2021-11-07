@@ -1,5 +1,4 @@
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
-import 'package:chuck_norris_jokes/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,22 +26,6 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-        Obx(
-          () => ctrl.likeCount > 0
-              ? SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                      itemCount: ctrl.likeCount,
-                      itemBuilder: (context, index) {
-                        return ListTile(
-                          dense: true,
-                          visualDensity: VisualDensity.compact,
-                          title: Text('${ctrl.likes.value[index].summary}'),
-                        );
-                      }),
-                )
-              : SizedBox(),
-        ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(16.0),
@@ -58,10 +41,6 @@ class HomeView extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
-              onPressed: () => Get.toNamed(AppRouter.categories),
-              child: Text("Categories"),
-            ),
             ElevatedButton(
               onPressed: () => ctrl.random(),
               child: Text("Shuffle"),
@@ -84,13 +63,9 @@ class HomeView extends StatelessWidget {
                 ),
               ),
             ),
-            ElevatedButton(
-              onPressed: () => Get.toNamed(AppRouter.likes),
-              child: Text('Likes'),
-            )
           ],
         ),
-        SizedBox(height: 32),
+        // SizedBox(height: 32),
       ],
     );
   }

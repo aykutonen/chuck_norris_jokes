@@ -1,4 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
+import 'package:chuck_norris_jokes/controllers/dashboard_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,7 +23,8 @@ class CategoriesView extends StatelessWidget {
             title: Text(cat),
             onTap: () {
               homeCtrl.selectCategory(cat);
-              Get.back();
+              Get.find<DashboardController>().changePage(0);
+              // Get.back();
             },
           );
         },
