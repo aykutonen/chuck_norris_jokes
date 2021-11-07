@@ -14,6 +14,18 @@ class DashboardController extends GetxController {
   ];
 
   Widget get currentPage => pages[currentPageIndex.value];
+  String get pageTitle {
+    switch (currentPageIndex.value) {
+      case 0:
+        return 'Home';
+      case 1:
+        return 'Categories';
+      case 2:
+        return 'Likes';
+      default:
+        return 'Home';
+    }
+  }
 
   void changePage(int index) => currentPageIndex(index);
 }

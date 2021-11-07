@@ -26,38 +26,37 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-        Padding(
-          padding: const EdgeInsets.all(16.0),
+
+        Container(
+          height: Get.height / 4,
+          padding: const EdgeInsets.all(24),
+          alignment: Alignment.center,
           child: Obx(() => ctrl.isLoading.value
-              ? Center(child: CircularProgressIndicator())
+              ? CircularProgressIndicator()
               : ctrl.hasJoke
-                  ? Center(
-                      child: Text(ctrl.joke.value!.content),
-                    )
+                  ? Text(ctrl.joke.value!.content)
                   : Text("no jokes")),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ElevatedButton(
+            IconButton(
               onPressed: () => ctrl.random(),
-              child: Text("Shuffle"),
+              icon: Icon(
+                Icons.shuffle,
+                size: 32,
+                color: Colors.green,
+              ),
             ),
             Obx(
-              () => ElevatedButton(
+              () => IconButton(
                 onPressed: () => ctrl.jokeIsLiked
                     ? ctrl.removeLike(ctrl.joke.value!.id)
                     : ctrl.addLike(ctrl.joke.value!),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.favorite,
-                      size: 16,
-                      color: ctrl.jokeIsLiked ? Colors.red : Colors.white,
-                    ),
-                    SizedBox(width: 8),
-                    Text("Like ${ctrl.likeCount > 0 ? ctrl.likeCount : ''}"),
-                  ],
+                icon: Icon(
+                  Icons.favorite,
+                  size: 32,
+                  color: ctrl.jokeIsLiked ? Colors.red : Colors.grey.shade400,
                 ),
               ),
             ),

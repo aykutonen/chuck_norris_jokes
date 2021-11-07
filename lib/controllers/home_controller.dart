@@ -29,6 +29,7 @@ class HomeController extends GetxController {
       joke(await service.randomByCategory(selectedCategory.value));
     else
       joke(await service.random());
+    await Future.delayed(0.5.seconds);
     isLoading(false);
   }
 
