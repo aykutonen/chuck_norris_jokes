@@ -49,7 +49,7 @@ class AppTheme {
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
       primaryColor: Colors.yellow,
-      scaffoldBackgroundColor: Colors.black26,
+      scaffoldBackgroundColor: Colors.black,
       textTheme: TextTheme(
         bodyText1: _textStyleDark,
         bodyText2: _textStyleDark,
