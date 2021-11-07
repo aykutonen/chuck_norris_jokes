@@ -12,7 +12,6 @@ class DashboardView extends StatelessWidget {
         title: Obx(() => Text(ctrl.pageTitle)),
       ),
       body: SafeArea(
-        maintainBottomViewPadding: true,
         child: Obx(() => ctrl.currentPage),
       ),
       bottomNavigationBar: Obx(

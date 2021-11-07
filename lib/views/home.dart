@@ -1,3 +1,4 @@
+import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,7 +27,20 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-
+        Container(
+          padding: const EdgeInsets.all(32),
+          child: ElevatedButton(
+            child: Text(
+              'Theme Change',
+            ),
+            onPressed: () {
+              final appCtrl = Get.find<AppController>();
+              Get.isDarkMode
+                  ? appCtrl.changeThemeMode(ThemeMode.light)
+                  : appCtrl.changeThemeMode(ThemeMode.dark);
+            },
+          ),
+        ),
         Container(
           height: Get.height / 4,
           padding: const EdgeInsets.all(24),
@@ -45,7 +59,6 @@ class HomeView extends StatelessWidget {
               icon: Icon(
                 Icons.shuffle,
                 size: 32,
-                color: Colors.green,
               ),
             ),
             Obx(
@@ -56,7 +69,7 @@ class HomeView extends StatelessWidget {
                 icon: Icon(
                   Icons.favorite,
                   size: 32,
-                  color: ctrl.jokeIsLiked ? Colors.red : Colors.grey.shade400,
+                  color: ctrl.jokeIsLiked ? Colors.red : null,
                 ),
               ),
             ),
