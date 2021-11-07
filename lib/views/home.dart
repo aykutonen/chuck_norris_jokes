@@ -1,12 +1,14 @@
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
+import 'package:chuck_norris_jokes/controllers/likes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
   final ctrl = Get.put(HomeController());
   final catCtrl = Get.find<CategoryController>();
+  final likeCtrl = Get.put(LikesController());
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     Text("Selected Category: ${catCtrl.selected}"),
                     IconButton(
-                      onPressed: () => ctrl.selectCategory(""),
+                      onPressed: () => catCtrl.selectCategory(''),
                       icon: const Icon(Icons.delete),
                     )
                   ],
@@ -65,13 +67,16 @@ class HomeView extends StatelessWidget {
             ),
             Obx(
               () => IconButton(
-                onPressed: () => ctrl.jokeIsLiked
-                    ? ctrl.removeLike(ctrl.joke.value!.id)
-                    : ctrl.addLike(ctrl.joke.value!),
+                onPressed: () => likeCtrl.jokeIsLiked(ctrl.joke.value!.id)
+                    ? likeCtrl.removeLike(ctrl.joke.value!.id)
+                    : likeCtrl.addLike(ctrl.joke.value!),
                 icon: Icon(
                   Icons.favorite,
                   size: 32,
-                  color: ctrl.jokeIsLiked ? Colors.red : null,
+                  color:
+                      ctrl.hasJoke && likeCtrl.jokeIsLiked(ctrl.joke.value!.id)
+                          ? Colors.red
+                          : null,
                 ),
               ),
             ),

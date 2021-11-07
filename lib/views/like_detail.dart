@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LikeDetailView extends StatelessWidget {
-  final ctrl = Get.put(LikesController());
+  final ctrl = Get.find<LikesController>();
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,9 @@ class LikeDetailView extends StatelessWidget {
                   Obx(() => Icon(
                         Icons.favorite,
                         size: 16,
-                        color: ctrl.hasLiked ? Colors.red : Colors.white,
+                        color: ctrl.jokeIsLiked(ctrl.joke.value!.id)
+                            ? Colors.red
+                            : Colors.white,
                       )),
                   SizedBox(width: 8),
                   Text('Like'),

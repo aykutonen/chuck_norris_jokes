@@ -1,19 +1,18 @@
-import 'package:chuck_norris_jokes/controllers/home_controller.dart';
-import 'package:chuck_norris_jokes/core/app_router.dart';
+import 'package:chuck_norris_jokes/controllers/likes_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LikesView extends StatelessWidget {
-  final homeCtrl = Get.find<HomeController>();
+  final ctrl = Get.find<LikesController>();
 
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => homeCtrl.likeCount > 0
+      () => ctrl.likeCount > 0
           ? ListView.separated(
-              itemCount: homeCtrl.likeCount,
+              itemCount: ctrl.likeCount,
               itemBuilder: (context, index) {
-                final joke = homeCtrl.likes.value[index];
+                final joke = ctrl.likes.value[index];
                 return Dismissible(
                   direction: DismissDirection.endToStart,
                   background: Container(
@@ -23,14 +22,13 @@ class LikesView extends StatelessWidget {
                     child: Icon(Icons.delete, color: Colors.white),
                   ),
                   key: Key(joke.id),
-                  onDismissed: (_) => homeCtrl.removeLike(joke.id),
+                  onDismissed: (_) => ctrl.removeLike(joke.id),
                   // direction: DismissDirection.endToStart,
                   child: ListTile(
                     title: Text(joke.content),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    onTap: () =>
-                        Get.toNamed(AppRouter.likeDetail, arguments: joke.id),
+                    onTap: () => ctrl.openDetail(joke.id),
                   ),
                 );
               },

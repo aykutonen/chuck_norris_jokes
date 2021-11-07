@@ -1,24 +1,46 @@
-import 'package:chuck_norris_jokes/controllers/home_controller.dart';
+import 'package:chuck_norris_jokes/core/app_router.dart';
 import 'package:chuck_norris_jokes/models/joke/joke.dart';
+import 'package:chuck_norris_jokes/services/chucknorris_service.dart';
 import 'package:get/get.dart';
 
 class LikesController extends GetxController {
-  late var joke = Rxn<Joke>();
+  var joke = Rxn<Joke>();
+  var likes = RxList<Joke>().obs;
 
-  final homeCtrl = Get.find<HomeController>();
+  final service = Get.find<ChuckNorrisService>();
 
   @override
   void onInit() {
-    joke.value = homeCtrl.likes.value.firstWhere((e) => e.id == Get.arguments);
+    likes.value(service.getLikes());
+    // joke.value = likes.value.firstWhere((e) => e.id == Get.arguments);
     super.onInit();
   }
 
-  bool get hasLiked => homeCtrl.likes.value.any((e) => e.id == joke.value!.id);
+  openDetail(String id) {
+    joke(likes.value.firstWhere((e) => e.id == id));
+    Get.toNamed(AppRouter.likeDetail);
+  }
+
+  int get likeCount => likes.value.length;
+
+  bool jokeIsLiked(String id) => likes.value.any((e) => e.id == id);
 
   void likeUnlike() {
-    if (hasLiked)
-      homeCtrl.removeLike(joke.value!.id);
+    if (jokeIsLiked(joke.value!.id))
+      removeLike(joke.value!.id);
     else
-      homeCtrl.addLike(joke.value!);
+      addLike(joke.value!);
+  }
+
+  void addLike(Joke joke) {
+    if (!likes.value.any((e) => e.id == joke.id)) {
+      service.addLike(joke);
+      likes.value.add(joke);
+    }
+  }
+
+  void removeLike(String id) {
+    service.removeLike(id);
+    likes.value.removeWhere((e) => e.id == id);
   }
 }

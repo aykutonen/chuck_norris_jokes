@@ -7,10 +7,11 @@ class ChuckNorrisProvider extends GetConnect {
     httpClient.maxAuthRetries = 3;
   }
 
-  Future<Response> random() async => await get("random");
+  Future<Response> random() async =>
+      await get("random?dt=${DateTime.now().microsecondsSinceEpoch}");
 
-  Future<Response> randomByCateogry(String cat) async =>
-      await get("random?category=$cat");
+  Future<Response> randomByCateogry(String cat) async => await get(
+      "random?category=$cat&dt=${DateTime.now().microsecondsSinceEpoch}");
 
   Future<Response> categories() async => await get("categories");
 
