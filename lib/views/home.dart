@@ -8,7 +8,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Obx(
@@ -26,17 +26,15 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Obx(() => ctrl.isLoading.value
-                ? Center(child: CircularProgressIndicator())
-                : ctrl.hasJoke
-                    ? Center(
-                        child: Text(ctrl.joke.value!.content),
-                      )
-                    : Text("no jokes")),
-          ),
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Obx(() => ctrl.isLoading.value
+              ? Center(child: CircularProgressIndicator())
+              : ctrl.hasJoke
+                  ? Center(
+                      child: Text(ctrl.joke.value!.content),
+                    )
+                  : Text("no jokes")),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
