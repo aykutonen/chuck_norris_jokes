@@ -1,10 +1,12 @@
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
+import 'package:chuck_norris_jokes/controllers/category_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class HomeView extends StatelessWidget {
   final ctrl = Get.put(HomeController());
+  final catCtrl = Get.find<CategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -13,12 +15,12 @@ class HomeView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Obx(
-          () => ctrl.selectedCategory.isNotEmpty
+          () => catCtrl.selected.isNotEmpty
               ? Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Selected Category: ${ctrl.selectedCategory}"),
+                    Text("Selected Category: ${catCtrl.selected}"),
                     IconButton(
                       onPressed: () => ctrl.selectCategory(""),
                       icon: const Icon(Icons.delete),

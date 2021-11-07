@@ -1,12 +1,9 @@
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
-import 'package:chuck_norris_jokes/controllers/dashboard_controller.dart';
-import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoriesView extends StatelessWidget {
-  final ctrl = Get.put(CategoryController());
-  final homeCtrl = Get.find<HomeController>();
+  final ctrl = Get.find<CategoryController>();
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +18,7 @@ class CategoriesView extends StatelessWidget {
                 ? Icon(Icons.check)
                 : null,
             title: Text(cat),
-            onTap: () {
-              homeCtrl.selectCategory(cat);
-              Get.find<DashboardController>().changePage(0);
-              // Get.back();
-            },
+            onTap: () => ctrl.selectCategory(cat),
           );
         },
         separatorBuilder: (context, index) =>
