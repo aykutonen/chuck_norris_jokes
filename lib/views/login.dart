@@ -36,7 +36,6 @@ class LoginView extends StatelessWidget {
                 SizedBox(height: 32),
                 Form(
                   key: ctrl.formKey,
-                  autovalidateMode: AutovalidateMode.onUserInteraction,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

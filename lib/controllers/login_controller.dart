@@ -1,9 +1,9 @@
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
-import 'package:chuck_norris_jokes/core/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
+  final appCtrl = Get.find<AppController>();
   final formKey = GlobalKey<FormState>();
   final emailCtrl = TextEditingController();
   final passwordCtrl = TextEditingController();
@@ -28,8 +28,8 @@ class LoginController extends GetxController {
   void login() {
     if (formKey.currentState!.validate()) {
       if (_checkUser()) {
-        Get.find<AppController>().saveHasLoggedIn(true);
-        Get.offAllNamed(AppRouter.home);
+        appCtrl.saveHasLoggedIn(true);
+        Get.offAllNamed(appCtrl.getInitialRoute());
       } else {
         Get.snackbar('Hata', 'Hatalı parola girdiniz',
             backgroundColor: Colors.red,
