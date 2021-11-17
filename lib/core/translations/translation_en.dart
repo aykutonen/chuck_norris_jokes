@@ -19,5 +19,6 @@ class TranslationEN {
         'joke_detail': 'Joke Detail',
         'like': 'Like',
         'language_change': 'Language Change',
+        'menu': 'Menu',
       };
 }

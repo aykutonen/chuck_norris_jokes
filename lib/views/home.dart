@@ -1,4 +1,3 @@
-import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:chuck_norris_jokes/controllers/likes_controller.dart';
@@ -9,7 +8,6 @@ class HomeView extends StatelessWidget {
   final ctrl = Get.put(HomeController());
   final catCtrl = Get.find<CategoryController>();
   final likeCtrl = Get.put(LikesController());
-  final appCtrl = Get.find<AppController>();
 
   @override
   Widget build(BuildContext context) {
@@ -31,29 +29,6 @@ class HomeView extends StatelessWidget {
                   ],
                 )
               : Container(),
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              child: Text(
-                'theme_change'.tr,
-              ),
-              onPressed: () {
-                Get.isDarkMode
-                    ? appCtrl.changeThemeMode(ThemeMode.light)
-                    : appCtrl.changeThemeMode(ThemeMode.dark);
-              },
-            ),
-            ElevatedButton(
-              child: Text(
-                'language_change'.tr,
-              ),
-              onPressed: () {
-                appCtrl.changeLanguage(null);
-              },
-            ),
-          ],
         ),
         Container(
           height: Get.height / 4,

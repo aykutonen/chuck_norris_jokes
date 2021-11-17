@@ -19,5 +19,6 @@ class TranslationTR {
         'joke_detail': 'Şaka Detayı',
         'like': 'Beğen',
         'language_change': 'Dil Değiştir',
+        'menu': 'Menü',
       };
 }

@@ -46,17 +46,19 @@ class AppController extends GetxController {
     return AppRouter.onboarding;
   }
 
-  void changeThemeMode(ThemeMode mode) {
+  void changeThemeMode({ThemeMode? mode}) {
+    if (mode == null) {
+      mode = Get.isDarkMode ? ThemeMode.light : ThemeMode.dark;
+    }
     service.saveThemeMode(mode);
     Get.changeThemeMode(mode);
   }
 
-  void changeLanguage(String? lang) {
+  void changeLanguage({String? lang}) {
     if (lang == null) {
-      if (language.value != null && language.value!.languageCode == 'en')
-        lang = 'tr';
-      else
-        lang = 'en';
+      lang = language.value != null && language.value!.languageCode == 'en'
+          ? 'tr'
+          : 'en';
     }
     service.saveLanguage(lang);
     language(Locale(lang));
