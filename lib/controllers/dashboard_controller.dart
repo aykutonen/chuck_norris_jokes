@@ -17,13 +17,13 @@ class DashboardController extends GetxController {
   String get pageTitle {
     switch (currentPageIndex.value) {
       case 0:
-        return 'Home';
+        return 'home'.tr;
       case 1:
-        return 'Categories';
+        return 'categories'.tr;
       case 2:
-        return 'Likes';
+        return 'likes'.tr;
       default:
-        return 'Home';
+        return 'home'.tr;
     }
   }
 

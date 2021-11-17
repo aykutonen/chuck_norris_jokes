@@ -9,6 +9,7 @@ class HomeView extends StatelessWidget {
   final ctrl = Get.put(HomeController());
   final catCtrl = Get.find<CategoryController>();
   final likeCtrl = Get.put(LikesController());
+  final appCtrl = Get.find<AppController>();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class HomeView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text("Selected Category: ${catCtrl.selected}"),
+                    Text('selected_category'.tr + ': ${catCtrl.selected}'),
                     IconButton(
                       onPressed: () => catCtrl.selectCategory(''),
                       icon: const Icon(Icons.delete),
@@ -31,19 +32,28 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-        Container(
-          padding: const EdgeInsets.all(32),
-          child: ElevatedButton(
-            child: Text(
-              'Theme Change',
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            ElevatedButton(
+              child: Text(
+                'theme_change'.tr,
+              ),
+              onPressed: () {
+                Get.isDarkMode
+                    ? appCtrl.changeThemeMode(ThemeMode.light)
+                    : appCtrl.changeThemeMode(ThemeMode.dark);
+              },
             ),
-            onPressed: () {
-              final appCtrl = Get.find<AppController>();
-              Get.isDarkMode
-                  ? appCtrl.changeThemeMode(ThemeMode.light)
-                  : appCtrl.changeThemeMode(ThemeMode.dark);
-            },
-          ),
+            ElevatedButton(
+              child: Text(
+                'language_change'.tr,
+              ),
+              onPressed: () {
+                appCtrl.changeLanguage(null);
+              },
+            ),
+          ],
         ),
         Container(
           height: Get.height / 4,
@@ -53,7 +63,7 @@ class HomeView extends StatelessWidget {
               ? CircularProgressIndicator()
               : ctrl.hasJoke
                   ? Text(ctrl.joke.value!.content)
-                  : Text("no jokes")),
+                  : Text('no_jokes'.tr)),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

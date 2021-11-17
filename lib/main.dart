@@ -1,5 +1,6 @@
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/core/theme.dart';
+import 'package:chuck_norris_jokes/core/translations/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,7 +14,7 @@ void main() async {
 
 Future<void> appInit() async {
   await GetStorage.init();
-  // GetStorage().erase();s
+  // GetStorage().erase();
   Get.put(AppController());
 }
 
@@ -25,13 +26,16 @@ class MyApp extends StatelessWidget {
     final appCtrl = Get.find<AppController>();
 
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'app_title'.tr,
       debugShowCheckedModeBanner: false,
       initialRoute: appCtrl.getInitialRoute(),
       getPages: AppRouter.routes,
       theme: AppTheme.lightTheme,
       darkTheme: AppTheme.darkTheme,
       themeMode: appCtrl.themeMode,
+      translations: AppTranslations(),
+      locale: appCtrl.language.value,
+      fallbackLocale: Locale('en'),
     );
   }
 }

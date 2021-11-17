@@ -21,12 +21,12 @@ class DashboardView extends StatelessWidget {
           onTap: ctrl.currentPageIndex,
           currentIndex: ctrl.currentPageIndex.value,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'home'.tr),
             BottomNavigationBarItem(
-                icon: Icon(Icons.category), label: 'Categories'),
+                icon: Icon(Icons.category), label: 'categories'.tr),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite),
-                label: 'Likes (${likeCtrl.likeCount})'),
+                label: 'likes'.tr + ' (${likeCtrl.likeCount})'),
           ],
         ),
       ),

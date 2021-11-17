@@ -8,7 +8,7 @@ class LikeDetailView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Joke Detail')),
+      appBar: AppBar(title: Text('joke_detail'.tr)),
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -40,7 +40,7 @@ class LikeDetailView extends StatelessWidget {
                             : Colors.white,
                       )),
                   SizedBox(width: 8),
-                  Text('Like'),
+                  Text('like'.tr),
                 ],
               ),
             )

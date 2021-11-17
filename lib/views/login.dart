@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Login",
+                  "login".tr,
                   style: Get.textTheme.headline3,
                 ),
                 SizedBox(height: 32),
@@ -42,24 +42,24 @@ class LoginView extends StatelessWidget {
                       TextFormField(
                         controller: ctrl.emailCtrl,
                         validator: ctrl.emailValidator,
-                        decoration: const InputDecoration(
-                          labelText: 'Email',
-                          hintText: 'acme@mail.com',
+                        decoration: InputDecoration(
+                          labelText: 'email'.tr,
+                          hintText: 'email_hint'.tr,
                         ),
                       ),
                       TextFormField(
                         controller: ctrl.passwordCtrl,
                         validator: ctrl.passwordValidator,
                         obscureText: true,
-                        decoration: const InputDecoration(
-                          labelText: 'Password',
-                          hintText: '***',
+                        decoration: InputDecoration(
+                          labelText: 'password'.tr,
+                          hintText: 'password_hint'.tr,
                         ),
                       ),
                       SizedBox(height: 32),
                       ElevatedButton(
                         onPressed: ctrl.login,
-                        child: Text('Login'),
+                        child: Text('login'.tr),
                       ),
                     ],
                   ),

@@ -36,7 +36,7 @@ class LikesView extends StatelessWidget {
                   Divider(thickness: 0.4, height: 0),
             )
           : Center(
-              child: Text('Chuck Norris has no jokes'),
+              child: Text('joke_not_found'.tr),
             ),
     );
   }

@@ -7,6 +7,7 @@ class AppController extends GetxController {
   var hasShowOnboarding = false.obs;
   var hasLoggedIn = false.obs;
   var themeMode = ThemeMode.system;
+  var language = Get.deviceLocale.obs;
 
   final service = Get.put(AppService());
 
@@ -18,6 +19,11 @@ class AppController extends GetxController {
     // ThemeMode değerini storage'den çek
     final _themeModeFromLocal = service.getThemeMode();
     if (_themeModeFromLocal != null) themeMode = _themeModeFromLocal;
+
+    final _langFromLocal = service.getLanguage();
+    if (_langFromLocal != null && _langFromLocal.isNotEmpty) {
+      language(Locale(_langFromLocal));
+    }
 
     super.onInit();
   }
@@ -43,5 +49,17 @@ class AppController extends GetxController {
   void changeThemeMode(ThemeMode mode) {
     service.saveThemeMode(mode);
     Get.changeThemeMode(mode);
+  }
+
+  void changeLanguage(String? lang) {
+    if (lang == null) {
+      if (language.value != null && language.value!.languageCode == 'en')
+        lang = 'tr';
+      else
+        lang = 'en';
+    }
+    service.saveLanguage(lang);
+    language(Locale(lang));
+    Get.updateLocale(language.value!);
   }
 }

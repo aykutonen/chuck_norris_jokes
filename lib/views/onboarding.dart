@@ -49,7 +49,7 @@ class OnboardingView extends StatelessWidget {
             right: 16,
             bottom: 32,
             child: ElevatedButton(
-              child: Obx(() => Text(ctrl.isLast ? 'Start' : 'Next')),
+              child: Obx(() => Text(ctrl.isLast ? 'start'.tr : 'next'.tr)),
               onPressed: () => ctrl.nextPage(),
             ),
           ),
