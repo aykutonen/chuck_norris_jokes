@@ -1,3 +1,4 @@
+import 'package:chuck_norris_jokes/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -30,7 +31,7 @@ class AppTheme {
         ),
       ),
       appBarTheme: AppBarTheme(
-        systemOverlayStyle: SystemUiOverlayStyle.dark,
+        systemOverlayStyle: SystemUiOverlayStyle.light,
         foregroundColor: Colors.red,
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
@@ -44,12 +45,29 @@ class AppTheme {
     );
   }
 
-  static final _textStyleDark = TextStyle(color: Colors.yellow);
+  static final _textStyleDark = TextStyle(color: AppColors.onSecondary);
 
   static ThemeData get darkTheme {
     return ThemeData.dark().copyWith(
-      primaryColor: Colors.yellow,
-      scaffoldBackgroundColor: Colors.black,
+      // primaryColor: AppColors.primary,
+      // primaryColorBrightness: Brightness.dark,
+      // primaryColorDark: AppColors.primaryDark,
+      // primaryColorLight: AppColors.primaryLight,
+      colorScheme: ThemeData.dark().colorScheme.copyWith(
+            primary: AppColors.primary,
+            secondary: AppColors.secondary,
+            onPrimary: AppColors.onPrimary,
+            onSecondary: AppColors.onSecondary,
+            onBackground: AppColors.onSecondary,
+            background: AppColors.primary,
+            surface: AppColors.primary,
+            error: AppColors.secondary,
+            onError: AppColors.onSecondary,
+            onSurface: AppColors.onPrimary,
+            primaryVariant: AppColors.secondary,
+            secondaryVariant: AppColors.primary,
+          ),
+      scaffoldBackgroundColor: AppColors.primary,
       textTheme: TextTheme(
         bodyText1: _textStyleDark,
         bodyText2: _textStyleDark,
@@ -65,23 +83,41 @@ class AppTheme {
         headline5: _textStyleDark,
         headline6: _textStyleDark,
       ),
+      buttonTheme: ButtonThemeData(
+        buttonColor: AppColors.secondary,
+        textTheme: ButtonTextTheme.normal,
+      ),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.all(Colors.grey.shade600),
-          foregroundColor: MaterialStateProperty.all(Colors.yellow),
+          backgroundColor: MaterialStateProperty.all(AppColors.secondary),
+          foregroundColor: MaterialStateProperty.all(AppColors.onSecondary),
         ),
       ),
       appBarTheme: AppBarTheme(
         systemOverlayStyle: SystemUiOverlayStyle.light,
-        foregroundColor: Colors.yellow,
+        foregroundColor: AppColors.onSecondary,
         shadowColor: Colors.transparent,
         backgroundColor: Colors.transparent,
       ),
       brightness: Brightness.dark,
-      dividerColor: Colors.yellowAccent,
+      dividerTheme: DividerThemeData(
+        color: AppColors.onSecondary.withOpacity(0.3),
+        space: 0,
+        thickness: 0.5,
+        endIndent: 2,
+        indent: 2,
+      ),
+      progressIndicatorTheme: ProgressIndicatorThemeData(
+        circularTrackColor: AppColors.onSecondary,
+        color: AppColors.onPrimary,
+      ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
-        unselectedItemColor: Colors.grey,
-        selectedItemColor: Colors.yellow,
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        unselectedItemColor: AppColors.onSecondary,
+        selectedItemColor: AppColors.secondary,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
       ),
     );
   }

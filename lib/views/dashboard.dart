@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
 import 'package:chuck_norris_jokes/controllers/dashboard_controller.dart';
 import 'package:chuck_norris_jokes/controllers/likes_controller.dart';
@@ -21,38 +19,41 @@ class DashboardView extends StatelessWidget {
         child: Obx(() => ctrl.currentPage),
       ),
       endDrawer: Drawer(
-        child: ListView(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'menu'.tr,
-                textAlign: TextAlign.end,
-                style: Get.textTheme.headline4,
+        child: ColoredBox(
+          color: Get.theme.colorScheme.primary,
+          child: ListView(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(
+                  'menu'.tr,
+                  textAlign: TextAlign.end,
+                  style: Get.textTheme.headline4,
+                ),
               ),
-            ),
-            Divider(),
-            ListTile(
-              title: Text(
-                'theme_change'.tr,
-                textAlign: TextAlign.end,
+              Divider(),
+              ListTile(
+                title: Text(
+                  'theme_change'.tr,
+                  textAlign: TextAlign.end,
+                ),
+                onTap: () {
+                  appCtrl.changeThemeMode();
+                  Get.back();
+                },
               ),
-              onTap: () {
-                appCtrl.changeThemeMode();
-                Get.back();
-              },
-            ),
-            ListTile(
-              title: Text(
-                'language_change'.tr,
-                textAlign: TextAlign.end,
+              ListTile(
+                title: Text(
+                  'language_change'.tr,
+                  textAlign: TextAlign.end,
+                ),
+                onTap: () {
+                  appCtrl.changeLanguage();
+                  Get.back();
+                },
               ),
-              onTap: () {
-                appCtrl.changeLanguage();
-                Get.back();
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Obx(

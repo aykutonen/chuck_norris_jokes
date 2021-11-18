@@ -1,5 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/app_controller.dart';
-import 'package:chuck_norris_jokes/core/theme.dart';
+import 'package:chuck_norris_jokes/core/theme/theme.dart';
 import 'package:chuck_norris_jokes/core/translations/app_translations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

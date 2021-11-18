@@ -1,4 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/onboarding_controller.dart';
+import 'package:chuck_norris_jokes/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,6 +9,8 @@ class OnboardingView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
+      extendBodyBehindAppBar: true,
       body: Stack(
         children: [
           Positioned.fill(
@@ -34,8 +37,8 @@ class OnboardingView extends StatelessWidget {
                     height: 8,
                     decoration: BoxDecoration(
                       color: ctrl.currentPage.value == index
-                          ? Colors.red
-                          : Colors.grey,
+                          ? AppColors.secondary
+                          : AppColors.onSecondary,
                       shape: BoxShape.circle,
                     ),
                   ),
