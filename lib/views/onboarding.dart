@@ -1,5 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/onboarding_controller.dart';
-import 'package:chuck_norris_jokes/core/theme/color.dart';
+import 'package:chuck_norris_jokes/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,8 +37,8 @@ class OnboardingView extends StatelessWidget {
                     height: 8,
                     decoration: BoxDecoration(
                       color: ctrl.currentPage.value == index
-                          ? AppColors.secondary
-                          : AppColors.onSecondary,
+                          ? AppColors.red
+                          : AppColors.white,
                       shape: BoxShape.circle,
                     ),
                   ),

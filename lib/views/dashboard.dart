@@ -13,7 +13,10 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Obx(() => Text(ctrl.pageTitle)),
+        title: Obx(() => Text(
+              ctrl.pageTitle,
+              style: Get.textTheme.headline4,
+            )),
       ),
       body: SafeArea(
         child: Obx(() => ctrl.currentPage),

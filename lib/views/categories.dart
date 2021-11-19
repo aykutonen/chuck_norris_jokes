@@ -1,5 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
-import 'package:chuck_norris_jokes/core/theme/color.dart';
+import 'package:chuck_norris_jokes/core/theme/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -26,8 +26,8 @@ class CategoriesView extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: isSelected
-                        ? Border.all(width: 2, color: AppColors.secondary)
-                        : Border.all(color: AppColors.onSecondary),
+                        ? Border.all(width: 2, color: AppColors.red)
+                        : Border.all(color: AppColors.white),
                     borderRadius: BorderRadius.all(Radius.circular(16)),
                     image: DecorationImage(
                         image: AssetImage('assets/images/categories/$cat.jpg'),
@@ -40,11 +40,11 @@ class CategoriesView extends StatelessWidget {
                       vertical: 4,
                     ),
                     color: isSelected
-                        ? AppColors.secondary.withOpacity(0.75)
+                        ? AppColors.red.withOpacity(0.75)
                         : Colors.black45,
                     child: Text(
                       cat,
-                      style: Get.textTheme.headline5,
+                      style: Get.textTheme.headline4,
                     ),
                   ),
                 ));

@@ -25,7 +25,10 @@ class LikesView extends StatelessWidget {
                   onDismissed: (_) => ctrl.removeLike(joke.id),
                   // direction: DismissDirection.endToStart,
                   child: ListTile(
-                    title: Text(joke.content),
+                    title: Text(
+                      joke.content,
+                      style: Get.textTheme.bodyText2,
+                    ),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     onTap: () => ctrl.openDetail(joke.id),
