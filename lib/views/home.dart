@@ -30,15 +30,21 @@ class HomeView extends StatelessWidget {
                 )
               : Container(),
         ),
-        Container(
-          height: Get.height / 4,
-          padding: const EdgeInsets.all(24),
-          alignment: Alignment.center,
-          child: Obx(() => ctrl.isLoading.value
-              ? CircularProgressIndicator()
-              : ctrl.hasJoke
-                  ? Text(ctrl.joke.value!.content)
-                  : Text('no_jokes'.tr)),
+        Expanded(
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 32),
+            alignment: Alignment.center,
+            child: SingleChildScrollView(
+              child: Obx(() => ctrl.isLoading.value
+                  ? CircularProgressIndicator()
+                  : ctrl.hasJoke
+                      ? Text(
+                          ctrl.joke.value!.content,
+                          style: Get.textTheme.headline4,
+                        )
+                      : Text('no_jokes'.tr)),
+            ),
+          ),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -67,7 +73,7 @@ class HomeView extends StatelessWidget {
             ),
           ],
         ),
-        // SizedBox(height: 32),
+        SizedBox(height: 40),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
+import 'package:chuck_norris_jokes/core/theme/color.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -8,21 +9,49 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Obx(
-      () => ListView.separated(
-        itemCount: ctrl.count,
-        itemBuilder: (context, index) {
-          final cat = ctrl.categories.value[index];
-          final selectedCat = ctrl.selected.value;
-          return ListTile(
-            trailing: selectedCat.length > 0 && selectedCat == cat
-                ? Icon(Icons.check)
-                : null,
-            title: Text(cat),
-            onTap: () => ctrl.selectCategory(cat),
-          );
-        },
-        separatorBuilder: (context, index) =>
-            Divider(height: 2, thickness: 0.4),
+      () => GridView.count(
+        semanticChildCount: ctrl.count,
+        cacheExtent: ctrl.count.toDouble(),
+        crossAxisCount: 2,
+        mainAxisSpacing: 16,
+        crossAxisSpacing: 16,
+        padding: const EdgeInsets.all(16),
+        children: List.generate(
+          ctrl.count,
+          (index) {
+            final cat = ctrl.categories.value[index];
+            final isSelected = ctrl.selected.value == cat;
+
+            return GestureDetector(
+                onTap: () => ctrl.selectCategory(cat),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: isSelected
+                        ? Border.all(width: 2, color: AppColors.secondary)
+                        : Border.all(color: AppColors.onSecondary),
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/categories/$cat.jpg'),
+                        fit: BoxFit.cover),
+                  ),
+                  alignment: Alignment.center,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 4,
+                    ),
+                    color: isSelected
+                        ? AppColors.secondary.withOpacity(0.75)
+                        : Colors.black45,
+                    child: Text(
+                      cat,
+                      style: Get.textTheme.headline5,
+                    ),
+                  ),
+                ));
+          },
+          growable: false,
+        ),
       ),
     );
   }
