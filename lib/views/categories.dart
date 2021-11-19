@@ -11,7 +11,6 @@ class CategoriesView extends StatelessWidget {
     return Obx(
       () => GridView.count(
         semanticChildCount: ctrl.count,
-        cacheExtent: ctrl.count.toDouble(),
         crossAxisCount: 2,
         mainAxisSpacing: 16,
         crossAxisSpacing: 16,
