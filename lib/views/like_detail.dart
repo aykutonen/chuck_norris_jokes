@@ -11,7 +11,7 @@ class LikeDetailView extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           'joke_detail'.tr,
-          style: Get.textTheme.headline4,
+          style: Theme.of(context).textTheme.headline4,
         ),
       ),
       body: SafeArea(

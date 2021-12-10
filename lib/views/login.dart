@@ -1,6 +1,5 @@
 import 'package:chuck_norris_jokes/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 
 class LoginView extends StatelessWidget {
@@ -33,7 +32,7 @@ class LoginView extends StatelessWidget {
                 ),
                 Text(
                   "login".tr,
-                  style: Get.textTheme.headline3,
+                  style: Theme.of(context).textTheme.headline3,
                 ),
                 SizedBox(height: 32),
                 Form(

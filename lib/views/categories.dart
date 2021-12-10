@@ -44,7 +44,7 @@ class CategoriesView extends StatelessWidget {
                         : Colors.black45,
                     child: Text(
                       cat,
-                      style: Get.textTheme.headline4,
+                      style: Theme.of(context).textTheme.headline4,
                     ),
                   ),
                 ));

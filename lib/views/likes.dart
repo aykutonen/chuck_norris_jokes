@@ -27,7 +27,7 @@ class LikesView extends StatelessWidget {
                   child: ListTile(
                     title: Text(
                       joke.content,
-                      style: Get.textTheme.bodyText2,
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                     contentPadding:
                         const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

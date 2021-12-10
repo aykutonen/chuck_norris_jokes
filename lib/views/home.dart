@@ -1,6 +1,7 @@
 import 'package:chuck_norris_jokes/controllers/category_controller.dart';
 import 'package:chuck_norris_jokes/controllers/home_controller.dart';
 import 'package:chuck_norris_jokes/controllers/likes_controller.dart';
+import 'package:chuck_norris_jokes/core/theme/app_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,7 +41,7 @@ class HomeView extends StatelessWidget {
                   : ctrl.hasJoke
                       ? Text(
                           ctrl.joke.value!.content,
-                          style: Get.textTheme.headline4,
+                          style: Theme.of(context).textTheme.headline4,
                         )
                       : Text('no_jokes'.tr)),
             ),
@@ -64,10 +65,10 @@ class HomeView extends StatelessWidget {
                 icon: Icon(
                   Icons.favorite,
                   size: 32,
-                  color:
-                      ctrl.hasJoke && likeCtrl.jokeIsLiked(ctrl.joke.value!.id)
-                          ? Colors.red
-                          : null,
+                  color: ctrl.hasJoke &&
+                          likeCtrl.jokeIsLiked(ctrl.joke.value!.id)
+                      ? Theme.of(context).colorScheme.likeButton // Colors.red
+                      : null,
                 ),
               ),
             ),

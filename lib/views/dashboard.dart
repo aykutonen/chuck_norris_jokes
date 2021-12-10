@@ -15,7 +15,7 @@ class DashboardView extends StatelessWidget {
       appBar: AppBar(
         title: Obx(() => Text(
               ctrl.pageTitle,
-              style: Get.textTheme.headline4,
+              style: Theme.of(context).textTheme.headline4,
             )),
       ),
       body: SafeArea(
@@ -31,7 +31,7 @@ class DashboardView extends StatelessWidget {
                 child: Text(
                   'menu'.tr,
                   textAlign: TextAlign.end,
-                  style: Get.textTheme.headline4,
+                  style: Theme.of(context).textTheme.headline4,
                 ),
               ),
               Divider(),
